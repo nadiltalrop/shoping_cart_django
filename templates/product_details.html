@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block metadescription %}
+    {{product.description | truncatewords:155}}
+{% endblock %}
+
+
+{% block title %}
+     {{product.name}} - Nature store
+{% endblock %}
+
+
+{% block content %}
+    <div class="row my_product_row_class">
+        <div class="title_link">
+            <p><a href="{% url 'shop:allProCat' %}">Home Page</a> | <a href="{{product.category.get_url}}">{{product.category}}</a>| {{product.name}} </p>
+        </div>
+    </div>
+    <div class="container">
+    <br>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                <img class="pro_image_detail_page" src="{{product.image.url}}" alt="{{product.name}}">
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-5">
+                <div class="content_section">
+                    <h1 class="my_product_title">{{product.name}}</h1>
+                    <h4>${{product.price}}</h4>
+                    <p class="my_product_title">Product Description</p>
+                    <p class="text-justify my_product_text">{{product.description}}</p>
+                    {% if product.stock <= 0 %}
+                        <p class="text-justify my_product_text">Out of stock</p>
+                    {% else %}
+                        <a href="{% url 'cart:add_cart' product.id %}" class="btn btn-secondary mb-5 cart_button">Add to cart</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
