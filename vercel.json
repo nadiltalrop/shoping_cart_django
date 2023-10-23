@@ -4,8 +4,8 @@
         "use":"@vercel/python",
         "config":{"maxLambadaSize":"15mb","runtime":"python3.10"}
     }],
-    "routes":[{
-        "src":"/(.*)",
-        "dest":"ecommerceproject/.wsgi.py"
+    "rewrites":[{
+        "source":"/(.*)",
+        "destination":"/"
     }]
 }
