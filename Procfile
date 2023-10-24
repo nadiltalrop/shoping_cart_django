@@ -1,1 +1,0 @@
-web: gunicorn ecommerseproject.wsgi
